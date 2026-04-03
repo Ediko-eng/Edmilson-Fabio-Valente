@@ -9,8 +9,7 @@ This system is an advanced linguistic tool developed to perform morphology analy
 
 A primary goal of this project is to address the **"over-stemming"** challenge in the Tetum language—ensuring that root words (like *hatan*) are preserved and not incorrectly truncated during linguistic processing.
 
-![App Screenshot](screenshot.png) 
-*Note: Replace screenshot.png with an actual image of your app.*
+![App Screenshot](System_image.png) 
 
 ## 🚀 Features
 * **Morphology Analysis:** Extracts prefixes, roots, and suffixes for Tetum and English.
