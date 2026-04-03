@@ -38,7 +38,6 @@ A primary goal of this project is to address the **"over-stemming"** challenge i
 git clone [/https://github.com/Ediko-eng/Edmilson-Fabio-Valente.git](https://github.com/Ediko-eng/Edmilson-Fabio-Valente.git)
 cd Edmilson-Fabio-Valente
 
----
 ## ⚖️ License
 This project is licensed under the MIT License. 
 For the full legal text, please visit: [Official License Link](https://github.com/Ediko-eng/Edmilson-Fabio-Valente/blob/main/LICENSE)
