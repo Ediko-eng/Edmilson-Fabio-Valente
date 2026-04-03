@@ -35,7 +35,7 @@ A primary goal of this project is to address the **"over-stemming"** challenge i
 
 ### 1. Clone the repository
 ```bash
-git clone [/https://github.com/Ediko-eng/Edmilson-Fabio-Valente.git](https://github.com/Ediko-eng/Edmilson-Fabio-Valente.git)
+git clone [https://github.com/Ediko-eng/Edmilson-Fabio-Valente.git](https://github.com/Ediko-eng/Edmilson-Fabio-Valente.git)
 cd Edmilson-Fabio-Valente
 ```
 
