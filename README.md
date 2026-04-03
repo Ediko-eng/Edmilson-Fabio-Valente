@@ -1,126 +1,40 @@
-# Tetum Morphology — DFA Engine
+# FINITE AUTOMATA & MORPHOLOGY ANALYSIS SYSTEM FOR TETUM LANGUAGE
 
-A focused, rule-driven morphology detector for the Tetum language using a deterministic finite automaton (DFA). This project targets segmentation and morpheme labeling (derivational/inflectional affixes, clitics, reduplication, compounding) for Tetum tokens.
-
----
-
-## Scope
-This repository implements a compact DFA-based analyzer tailored to Tetum morphology:
-- segmentation into stems and affixes
-- detection of reduplication and common compounding patterns
-- handling of clitics and particles via preprocessing
-- deterministic, rule-readable analyses suited for linguists and downstream pipelines
-
-This README is solely about Tetum morphology and the DFA approach used to detect it.
+*A rule-based linguistic analyzer for Tetum and English, powered by DFA/NFA engines and a modern PyQt6 interface.*
 
 ---
 
-## Tetum morphological notes (concise)
-- Primary processes: concatenative affixation (prefixes/suffixes), reduplication, and compounding.
-- Function words and particles play a strong role in syntax; some morphological marking appears via clitics/particles rather than rich inflection.
-- Reduplication is productive for plurality/intensification/iterativity in many Austronesian languages; the engine provides explicit handling for repeated segments.
-- Orthographic variants and simple alternations (e.g., vowel changes at morpheme boundaries) should be captured with orthographic rules in the builder.
+## 📖 Description
+This system is an advanced linguistic tool developed to perform morphology analysis and vocabulary extraction. By integrating **Deterministic Finite Automata (DFA)** and **Nondeterministic Finite Automata (NFA)**, the application recognizes complex text patterns. 
 
-(These notes are descriptive constraints used to design the DFA and rule set. Specific lexical entries and affix inventories live in the rules files.)
+A primary goal of this project is to address the **"over-stemming"** challenge in the Tetum language—ensuring that root words (like *hatan*) are preserved and not incorrectly truncated during linguistic processing.
 
----
+![App Screenshot](screenshot.png) 
+*Note: Replace screenshot.png with an actual image of your app.*
 
-## Approach
-1. Rules + lexicon → DFA builder: compile stems, prefixes, suffixes, reduplication patterns, and orthographic alternations into a deterministic automaton.
-2. Preprocess tokens:
-   - normalize orthography
-   - separate/flag clitics and particles where predictable
-3. Walk each token through the DFA to produce candidate segmentations and labels.
-4. Rank analyses by rule priority and simple heuristics (longest-stem, rule weight).
-5. Provide multiple analyses when ambiguity exists, with confidence scores.
+## 🚀 Features
+* **Morphology Analysis:** Extracts prefixes, roots, and suffixes for Tetum and English.
+* **Automata Engines:** Specialized DFA/NFA classes for pattern recognition.
+* **Multi-Format Support:** Seamlessly processes **PDF, DOCX, and TXT** files.
+* **Over-stemming Protection:** Implements rule-based logic to maintain high accuracy for Tetum stems.
+* **Export Capabilities:** Save analysis results to **CSV** for Excel or Database use.
 
-Special handling:
-- Reduplication: options include explicit copied transitions, a reduplication operator in rules, or a short-circuit module that recognizes repeated segments and proposes base+redup analyses.
-- Clitics/particles: either peeled off before DFA pass or represented as optional transitions.
+## 🛠 Tech Stack
+* **Language:** Python 3.11+
+* **GUI Framework:** PyQt6
+* **Data Handling:** Pandas
+* **Document Processing:** PyPDF2, python-docx
 
----
+## 📁 Project Structure
+* `main_app.py`: Entry point for the application.
+* `main_window.py`: Responsive UI and thread management.
+* `morphology_logic.py`: Core Tetum/English stemming engine.
+* `fa_logic.py`: DFA and NFA engine implementation.
+* `file_reader.py`: Utility for reading PDF, Word, and Text.
 
-## Rules format (example — Tetum-focused)
-Rules are JSON/YAML files edited by linguists. Minimal example (illustrative):
+## ⚙️ Installation & Usage
 
-```json
-{
-  "lexicon": {
-    "hanesan": {"pos": "ADJ"},
-    "main": {"pos": "V"},
-    "maun": {"pos": "N"}
-  },
-  "prefixes": [
-    {"form": "ma", "tag": "DERIV", "type": "derivational"}
-  ],
-  "suffixes": [
-    {"form": "n", "tag": "INF", "type": "inflectional"}
-  ],
-  "reduplication": [
-    {"pattern": "full", "tag": "REPD"},
-    {"pattern": "partial", "tag": "REPD_PART"}
-  ],
-  "clitics": [
-    {"form": "ba", "tag": "DIR"},
-    {"form": "mai", "tag": "MOTION"}
-  ],
-  "config": {
-    "longest_match": true,
-    "max_analyses": 6,
-    "apply_clitic_preprocessing": true
-  }
-}
-```
-
-Note: the example entries are placeholders illustrating structure — replace with a curated Tetum lexicon and affix inventory.
-
----
-
-## Quick start
-Requirements:
-- Python 3.8+
-
-Install & run:
+### 1. Clone the repository
 ```bash
-git clone <repo-url>
-cd <repo>
-python -m venv .venv
-source .venv/bin/activate
-pip install -r requirements.txt
-# build DFA from rules
-python scripts/build_dfa.py --rules rules/tetum_rules.json --out dfa_tetum.bin
-# analyze tokens
-python -m morphdfa.analyze --dfa dfa_tetum.bin --input tokens.txt --output analyses.json
-```
-
-Output: JSON per token with candidate segmentations, lemma (if determinable), morpheme tags, and confidence.
-
----
-
-## Evaluation (recommended)
-- Create a small gold standard of Tetum tokens with morpheme boundaries and labels.
-- Metrics: segmentation accuracy (boundary F1), lemma accuracy, tag precision/recall/F1, coverage (tokens analyzed).
-- Use iterative rule refinement: high-frequency error types → update orth/affix rules → rebuild DFA → re-evaluate.
-
----
-
-## Limitations
-- A purely deterministic DFA struggles with non-concatenative alternations unless explicitly encoded.
-- Ambiguity and unseen neologisms require fallback strategies (e.g., lexicon expansion, ML fallback).
-- Quality depends on the completeness of the Tetum lexicon and the coverage of reduplication/orthographic rules.
-
----
-
-## Project layout (recommended)
-- rules/            — Tetum rule files (JSON/YAML)
-- src/              — DFA engine (Tetum-specific hooks)
-- scripts/          — build, inspect, and test utilities
-- data/             — annotated Tetum samples and lexicon
-- tests/            — unit & evaluation tests
-
----
-
-## Contact
-Maintainer: Ediko-eng — your-email@example.com
-
-If you provide a small Tetum lexicon or sample annotations, the rule-set and DFA can be adapted and tuned to improve segmentation accuracy.
+git clone [https://github.com/your-username/your-repo-name.git](https://github.com/your-username/your-repo-name.git)
+cd your-repo-name
