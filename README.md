@@ -1,4 +1,4 @@
-# FINITE AUTOMATA & MORPHOLOGY ANALYSIS SYSTEM FOR TETUM and English LANGUAGE
+# FINITE AUTOMATA & MORPHOLOGY ANALYSIS SYSTEM FOR TETUM and ENGLISH LANGUAGE
 
 *A rule-based linguistic analyzer for Tetum and English, powered by DFA/NFA engines and a modern PyQt6 interface.*
 
